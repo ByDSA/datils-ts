@@ -10,8 +10,8 @@ ffmpeg.exec = async (params = [], opts = {}) => {
     return await exec(ffmpeg.path, params, opts);
 }
 
-let M3U8 = {};
-M3U8.download = async (url, opts = {}) => {
+let m3u8 = {};
+m3u8.download = async (url, opts = {}) => {
     let outPath = opts.outPath || ffmpeg.outPath;
     let filename = opts.filename || uri.removeExtensionOf( uri.getLastPartOf(url) );
     outPath += `/${filename}`;
@@ -19,4 +19,4 @@ M3U8.download = async (url, opts = {}) => {
 };
 
 module.exports.ffmpeg = ffmpeg;
-module.exports.M3U8 = M3U8;
+module.exports.m3u8 = m3u8;
