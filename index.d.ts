@@ -1,29 +1,29 @@
-export type String = {
-    unicodeToChar: (text: string) => string;
-    fragment: (str: string, a: string, b: string, begin: boolean, end: boolean) => string;
+export declare class String {
+    static unicodeToChar: (text: string) => string;
+    static fragment: (str: string, a: string, b: string, begin: boolean, end: boolean) => string;
 }
 
-export type Files = {
-    paths: string;
+export declare class Files {
+    static paths: string;
 }
 
-export type Shell = {
-    exec: (file: string, args: [], opts: {}) => any;
-    pause: () => void;
+export declare class Shell {
+    static exec: (file: string, args: [], opts: {}) => any;
+    static pause: () => void;
 }
 
-export type Video = {
-    ffmpeg: {
+export declare class Video {
+    static ffmpeg: {
         path: string;
         outPath: string;
         exec: (params: [], opts: {}) => any;
-    },
-    m3u8: {
+    }
+    static m3u8: {
         download: (url: string, opts: {}) => void;
     }
 }
 
-export type Uri = {
+export declare class Uri {
     getLastPartOf: (uri: string) => string;
     removeExtensionOf: (uri: string) => string;
 }

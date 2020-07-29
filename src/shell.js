@@ -1,5 +1,4 @@
 const spawn = require('child_process').spawn;
-const spawnSync = require('child_process').spawnSync;
 
 let shell = {};
 

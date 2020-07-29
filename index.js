@@ -1,5 +1,5 @@
-module.exports.string = require("./src/string.js");
-module.exports.files = require("./src/files.js");
-module.exports.shell = require("./src/shell.js");
-module.exports.video = require("./src/video.js");
-module.exports.uri = require("./src/uri.js");
+module.exports.String = require("./src/String.js");
+module.exports.Files = require("./src/Files.js");
+module.exports.Shell = require("./src/Shell.js");
+module.exports.Video = require("./src/Video.js");
+module.exports.Uri = require("./src/Uri.js");
