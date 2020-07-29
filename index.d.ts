@@ -5,17 +5,16 @@ export declare namespace String {
 
 export declare namespace Files {
     export declare const paths: string;
+    export declare const ffmpeg: string;
+    export declare const ffmpegOut: string;
 }
 
 export declare namespace Shell {
-    export declare function exec(file: string, args: [], opts: {}): ChildProcessWithoutNullStreams;
     export declare function pause(): void;
 }
 
 export declare namespace Video {
     export declare namespace ffmpeg {
-        export declare const path: string;
-        export declare const outPath: string;
         export declare function exec(params: [], opts: {}): ChildProcessWithoutNullStreams;
     }
     export declare namespace m3u8 {
