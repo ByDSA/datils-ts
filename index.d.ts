@@ -16,7 +16,7 @@ export declare namespace Video {
     export declare namespace ffmpeg {
         export declare const path: string;
         export declare const outPath: string;
-        export declare function exec(params: [], opts: {}): any;
+        export declare function exec(params: [], opts: {}): ChildProcessWithoutNullStreams;
     }
     export declare namespace m3u8 {
         export declare function download(url: string, opts: {}): ChildProcessWithoutNullStreams;
