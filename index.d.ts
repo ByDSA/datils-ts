@@ -1,6 +1,6 @@
 export declare class String {
     static unicodeToChar: (text: string) => string;
-    static fragment: (str: string, a: string, b: string, begin: boolean, end: boolean) => string;
+    static fragment: (str: string, a: string, b: string, begin: boolean = true, end: boolean = true) => string;
 }
 
 export declare class Files {
