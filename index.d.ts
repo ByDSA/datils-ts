@@ -1,29 +1,29 @@
-export declare class String {
-    static unicodeToChar: (text: string) => string;
-    static fragment: (str: string, a: string, b: string, begin: boolean = true, end: boolean = true) => string;
+export declare namespace String {
+    export declare function unicodeToChar(text: string): string;
+    export declare function fragment(str: string, a: string, b: string, begin: boolean = true, end: boolean = true): string;
 }
 
-export declare class Files {
-    static paths: string;
+export declare namespace Files {
+    export declare const paths: string;
 }
 
-export declare class Shell {
-    static exec: (file: string, args: [], opts: {}) => any;
-    static pause: () => void;
+export declare namespace Shell {
+    export declare function exec(file: string, args: [], opts: {}): ChildProcessWithoutNullStreams;
+    export declare function pause(): void;
 }
 
-export declare class Video {
-    static ffmpeg: {
-        path: string;
-        outPath: string;
-        exec: (params: [], opts: {}) => any;
+export declare namespace Video {
+    export declare namespace ffmpeg {
+        export declare const path: string;
+        export declare const outPath: string;
+        export declare function exec(params: [], opts: {}): any;
     }
-    static m3u8: {
-        download: (url: string, opts: {}) => void;
+    export declare namespace m3u8 {
+        export declare function download(url: string, opts: {}): ChildProcessWithoutNullStreams;
     }
 }
 
-export declare class Uri {
-    getLastPartOf: (uri: string) => string;
-    removeExtensionOf: (uri: string) => string;
+export declare namespace Uri {
+    export declare function getLastPartOf(uri: string): string;
+    export declare function removeExtensionOf(uri: string): string;
 }
