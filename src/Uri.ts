@@ -10,7 +10,7 @@ export function removeExtensionOf(uri) {
     return uri.substring(0, uri.lastIndexOf("."));
 };
 
-type RenamedNumberType = { num: number, name: string };
+export type RenamedNumberType = { num: number, name: string };
 export function getAvailableFile(pathString: string): string {
     if (fs.existsSync(pathString)) {
         const folders = path.dirname(pathString);
