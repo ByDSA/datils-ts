@@ -1,6 +1,6 @@
 import { spawn } from 'child_process';
 import paths from './Files';
-import { getLastPartOf, removeExtensionOf } from './uri';
+import { getLastPartOf, removeExtensionOf, getAvailableFile } from './uri';
 
 export namespace ffmpeg {
     export function exec(params: readonly string[] = []) {
@@ -14,6 +14,7 @@ export namespace m3u8 {
         let outPath = opts.outPath || paths.ffmpegOut;
         let filename = opts.filename || removeExtensionOf(getLastPartOf(url));
         outPath += `/${filename}`;
+        outPath = getAvailableFile(outPath);
         return ffmpeg.exec(["-i", url, "-c", "copy", "-bsf:a", "aac_adtstoasc", outPath]);
     };
 }
