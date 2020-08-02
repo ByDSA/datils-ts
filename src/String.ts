@@ -1,11 +1,11 @@
-module.exports.unicodeToChar = (text) => {
+export function unicodeToChar(text) {
     return text.replace(/\\u[\dA-F]{4}/gi,
         function (match) {
             return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
         });
 };
 
-module.exports.fragment = (str, a, b, begin = true, end = true) => {
+export function fragment(str, a, b, begin = true, end = true) {
     // Index B
     let indexB = str.indexOf(b);
     if (indexB < 0)
