@@ -8,7 +8,7 @@ export namespace ffmpeg {
     }
 }
 
-export namespace m3u8 {
+export namespace M3U8 {
     type OptsType = { outPath?: string, filename?: string };
     export function download(url: string, opts: OptsType = {}) {
         let outPath = opts.outPath || paths.ffmpegOut;

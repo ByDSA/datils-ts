@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAvailableFile = exports.removeExtensionOf = exports.getLastPartOf = void 0;
 const fs = require("fs");
 const path = require("path");
 function getLastPartOf(uri) {
