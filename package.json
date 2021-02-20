@@ -10,7 +10,8 @@
   "scripts": {
     "test": "jest",
     "clear": "rm -R dist",
-    "build": "npm run clear && tsc"
+    "build": "npm run clear && tsc && npm run copyfiles",
+    "copyfiles": "cp src/*.json dist"
   },
   "author": "Daniel Sales",
   "license": "ISC",
