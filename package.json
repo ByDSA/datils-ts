@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "clean": "rm -r dist",
+    "clean": "rm -rf dist",
     "build": "npm run clean && tsc && npm run copyfiles",
     "copyfiles": "cp src/*.json dist"
   },
