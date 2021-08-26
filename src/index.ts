@@ -5,3 +5,5 @@ export * from "./uri";
 export * from "./linux";
 export * from "./net";
 export * from "./time";
+export * from "./db";
+export * from "./log";
