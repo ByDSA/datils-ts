@@ -4,3 +4,4 @@ export * from "./video";
 export * from "./uri";
 export * from "./linux";
 export * from "./net";
+export * from "./time";
