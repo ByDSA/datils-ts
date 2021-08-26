@@ -2,22 +2,31 @@ import { execSync } from "child_process";
 import { existsSync } from "fs";
 import { logError, logGetLevel, logInfo, logSuccessVerbose } from "./log";
 
-export type PGDumpOptions = {
+export type DBOptions = {
   name: string;
   host: string;
   password?: string;
   username: string;
   outFile?: string;
+  dockerContainer?: string;
 }
 
-export function pgDump({password, host, name, username, outFile = "./backup.db"}: PGDumpOptions) {
+export type PGDumpOptions = DBOptions;
+
+export function pgDump({dockerContainer, password, host, name, username, outFile = "./backup.db"}: PGDumpOptions) {
   logInfo(`Backup Postgres db "${name}" from "${host}" ...`);
   checkFileNotExists(outFile);
   
   let cmd = "";
+  if (dockerContainer)
+    cmd += `docker exec -e`;
+   
   if (password)
     cmd += `PGPASSWORD=${password} `;
   
+  if (dockerContainer)
+    cmd += dockerContainer;
+
   cmd += `pg_dump -h ${host} -U ${username} -v -Fc ${name} > ${outFile}`;
 
   let options = {};
