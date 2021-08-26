@@ -84,5 +84,6 @@ function installUrl(url: URL, opts = defaultInstallOptions): boolean {
 
 export function execSync(...args: string[]): void {
     let options: ExecSyncOptionsWithStringEncoding = { stdio: 'pipe', encoding: 'utf-8' };
-    execSyncImported(`${args.reduce(s => " " + s)} `, options);
+    const cmd = args.reduce((prev, current, i) => i > 0 ? prev + " " + current : current);
+    execSyncImported(cmd, options);
 }
