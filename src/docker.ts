@@ -11,8 +11,8 @@ export function dockerExecSync({container, cmd, options}: DockerExecOpts) {
   const finalCmd = `docker exec -i ${container} ${cmd}`;
   execSync(finalCmd, options);
 }
-type OptsPath = { path : string };
-export type DockerRunOpts = OptsPath & {
+type OptsPathOptional = { path? : string };
+export type DockerRunOpts = OptsPathOptional & {
   dettach: boolean;
 }
 export function dockerRunSync({path = __dirname, dettach = false}: DockerRunOpts) {
@@ -25,8 +25,8 @@ export function dockerRunSync({path = __dirname, dettach = false}: DockerRunOpts
     execSync(`docker-compose -f ${dockerComposeFile} up ${args}`);
   }
 }
-export type DockerStopOpts = OptsPath;
-export function dockerStopSync({path = __dirname}: DockerStopOpts) {
+export type DockerStopOpts = OptsPathOptional;
+export function dockerStopSync({path = __dirname}: DockerStopOpts = {}) {
   const dockerComposeFile = searchForDockerComposeFile(path);
 
   if (dockerComposeFile) {
