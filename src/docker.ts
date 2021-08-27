@@ -15,7 +15,7 @@ type OptsPath = { path : string };
 export type DockerRunOpts = OptsPath & {
   dettach: boolean;
 }
-export function dockerRunSync({path, dettach = false}: DockerRunOpts) {
+export function dockerRunSync({path = __dirname, dettach = false}: DockerRunOpts) {
   const dockerComposeFile = searchForDockerComposeFile(path);
 
   if (dockerComposeFile) {
@@ -26,7 +26,7 @@ export function dockerRunSync({path, dettach = false}: DockerRunOpts) {
   }
 }
 export type DockerStopOpts = OptsPath;
-export function dockerStopSync({path}: DockerStopOpts) {
+export function dockerStopSync({path = __dirname}: DockerStopOpts) {
   const dockerComposeFile = searchForDockerComposeFile(path);
 
   if (dockerComposeFile) {
