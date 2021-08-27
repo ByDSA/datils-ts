@@ -38,7 +38,7 @@ export class AppBackup {
 
   constructor({path, name, dest}: AppBackupArgs) {
     this.path = resolve(path);
-    this.dest = resolve(dest ?? "..");
+    this.dest = resolve(dest ?? ".");
     this.appName = name ?? getFolderName(path);
 
     this.tmpFolder = `${path}/tmp`;
