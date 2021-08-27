@@ -17,6 +17,8 @@ export type DBOpts = {
   type: DBType
 } & DBOptions;
 
+export type DBOptsOut = DBOpts & { outFile: string };
+
 function getFolderName(path: string) {
   const resolvedPath = resolve(path);
   return resolvedPath.substring(resolvedPath.lastIndexOf('/') + 1);
@@ -29,7 +31,7 @@ export class AppBackup {
   private tmpFolder: string;
   private tmpDBsFolder: string;
   private tmpFilesFolder: string;
-  private dbs: DBOpts[];
+  private dbs: DBOptsOut[];
   private files: string[];
   private dateTimestamp: string;
 
@@ -115,7 +117,7 @@ export class AppBackup {
     logSuccessVerbose(`File backup "${file}" done!`);
   }
 
-  addDB(dbOpts: DBOpts) {
+  addDB(dbOpts: DBOptsOut) {
     this.dbs.push(dbOpts);
   }
 
