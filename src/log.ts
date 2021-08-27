@@ -71,3 +71,15 @@ export function logError(msg: string) {
     case 'none':
   }
 }
+
+export function logSection(msg: string) {
+  switch (_verboseLevel) {
+    default:
+    case 'info':
+    case 'all':
+      console.log(`${chalk.yellow(msg)}`);
+      break;
+    case 'error':
+    case 'none':
+  }
+}
