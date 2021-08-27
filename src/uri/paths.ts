@@ -6,6 +6,8 @@ export function getLastPartOf(uri: string) {
 
 export function getPwdPath(): string {
   const fullPwd = execSync("pwd").toString();
+  if (fullPwd === undefined)
+    throw new Error("'pwd' returned undefined value.");
   let originalPath = fullPwd.substr(0, fullPwd.length-1);
   return originalPath;
 }

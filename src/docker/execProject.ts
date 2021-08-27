@@ -15,7 +15,7 @@ export default function execProject({
   if (path)
     execSync(`cd ${path}`, {stdio: 'inherit'});
 
-  const PROJECT_NAME = getLastPartOf(path);
+  const PROJECT_NAME = getLastPartOf(path ?? originalPath);
   const opts = { sudo: true, dettach };
   logSection(`[${PROJECT_NAME}]`);
   dockerStopSync(opts);
