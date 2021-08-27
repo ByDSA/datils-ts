@@ -1,15 +1,6 @@
 import { execSync } from "child_process";
-import { dockerExecSync } from "./docker";
-import { checkFileExists, checkFileNotExists } from "./files";
-import { logGetLevel, logInfo, logInfoVerbose, logSuccessVerbose } from "./log";
-
-export type DBOptions = {
-  name: string;
-  host: string;
-  password?: string;
-  username: string;
-  dockerContainer?: string;
-}
+import { checkFileExists, checkFileNotExists, dockerExecSync, logGetLevel, logInfo, logInfoVerbose, logSuccessVerbose } from "..";
+import { DBOptions } from "./opts";
 
 export type PGDumpOptions = DBOptions & { outFile?: string };
 export type PGRestoreOptions = DBOptions & { inFile?: string };
@@ -40,6 +31,7 @@ export function pgDump({dockerContainer, password, host, name, username, outFile
   logSuccessVerbose(`Done! File: ${outFile}`);
 }
 
+// not tested
 export function pgRestore({dockerContainer, password, host, name, username, inFile = "./backup.db"}: PGRestoreOptions) {
   logInfo(`Restore Postgres db "${name}" from file ${inFile} to "${host}" ...`);
   checkFileExists(inFile);

@@ -1,7 +1,8 @@
 import { execSync } from "child_process";
-import { constants, copyFileSync, existsSync, mkdirSync, rmdirSync } from "fs";
+import { existsSync, mkdirSync, rmdirSync } from "fs";
+import { copySync } from "fs-extra";
 import { resolve } from "path";
-import { DBOptions, pgDump } from "../db";
+import { DBOptions, mysqldump, pgDump } from "../db";
 import { logInfo, logInfoVerbose, logSuccess, logSuccessVerbose } from "../log";
 import { timestampOfNow } from "../time";
 
@@ -11,7 +12,7 @@ export type AppBackupArgs = {
   dest?: string;
 }
 
-export type DBType = 'postgres';
+export type DBType = 'postgres' | 'mysql';
 
 export type DBOpts = {
   type: DBType
@@ -36,8 +37,8 @@ export class AppBackup {
   private dateTimestamp: string;
 
   constructor({path, name, dest}: AppBackupArgs) {
-    this.path = path;
-    this.dest = dest ?? "..";
+    this.path = resolve(path);
+    this.dest = resolve(dest ?? "..");
     this.appName = name ?? getFolderName(path);
 
     this.tmpFolder = `${path}/tmp`;
@@ -94,8 +95,14 @@ export class AppBackup {
   private compress() {
     logInfo("Compressing files ...");
     const zipPath = `${this.dest}/${this.appName}-${this.dateTimestamp}.zip`;
-    execSync(`cd ${this.tmpFolder} && zip -r ${zipPath} ./*`);
+    this.createDestIfNotExists();
+    execSync(`cd ${this.tmpFolder} && zip -r ${zipPath} ./*`, {stdio: 'ignore'});
     logSuccessVerbose("Done!");
+  }
+
+  private createDestIfNotExists() {
+    if (!existsSync(this.dest))
+      execSync(`mkdir -p ${this.dest}`)
   }
 
   private backupFiles() {
@@ -106,11 +113,13 @@ export class AppBackup {
   }
 
   private backupFile(file: string) {
-    logInfoVerbose(`Backup ${file} ...`);
+    logInfo(`Backup ${file} ...`);
     try {
-      copyFileSync(`${this.path}/${file}`,
-      `${this.tmpFilesFolder}/${file}`,
-       constants.COPYFILE_EXCL);
+      const filePath = `${this.path}/${file}`;
+      const destPath = `${this.tmpFilesFolder}/${file}`;
+      const opts = { override: false, errorOnExist: true };
+
+      copySync(filePath, destPath, opts);
     } catch(e) {
       throw e;
     }
@@ -132,8 +141,15 @@ export class AppBackup {
         const date = timestampOfNow();
         dbEdited.outFile = `${this.tmpDBsFolder}/${dbEdited.name}-${date}.db`;
       }
-      if (dbEdited.type === 'postgres')
-        pgDump(dbEdited);
+
+      switch(dbEdited.type) {
+        case 'postgres':
+          pgDump(dbEdited);
+          break;
+        case 'mysql':
+          mysqldump(dbEdited);
+          break;
+      }
     }
   }
 }
