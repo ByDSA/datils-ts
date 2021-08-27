@@ -2,10 +2,6 @@
 import * as fs from "fs";
 import * as path from 'path';
 
-export function getLastPartOf(uri) {
-    return uri.substring(uri.lastIndexOf('/') + 1);
-}
-
 export function removeExtensionOf(uri) {
     return uri.substring(0, uri.lastIndexOf("."));
 };

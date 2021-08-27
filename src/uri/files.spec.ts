@@ -1,23 +1,23 @@
-import { getAvailableFile } from "./uri";
+import { getAvailableFile } from "./files";
 
 it('File exists, get another new name', () => {
-    const path = "C:/Users/Daniel/Desktop/aa.txt";
+    const path = "tests/tmp/aa.txt";
     const file = getAvailableFile(path);
-    const expected = "C:/Users/Daniel/Desktop/aa (2).txt";
+    const expected = "tests/tmp/aa (2).txt";
 
     expect(file).toMatch(expected);
 });
 
 it('File exists with (2), get another new name', () => {
-    const path = "C:/Users/Daniel/Desktop/bb (2).txt";
+    const path = "tests/tmp/bb (2).txt";
     const file = getAvailableFile(path);
-    const expected = "C:/Users/Daniel/Desktop/bb (3).txt";
+    const expected = "tests/tmp/bb (3).txt";
 
     expect(file).toMatch(expected);
 });
 
 it('File does not exists, get same name', () => {
-    const path = "C:/Users/Daniel/Desktop/notexists.txt";
+    const path = "test/tmp/notexists.txt";
     const file = getAvailableFile(path);
 
     expect(file).toMatch(path);
