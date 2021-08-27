@@ -1,17 +1,17 @@
 import { execSync } from "child_process";
-import { existsSync } from "fs";
-import { logError, logGetLevel, logInfo, logSuccessVerbose } from "./log";
+import { checkFileExists, checkFileNotExists } from "./files";
+import { logGetLevel, logInfo, logInfoVerbose, logSuccessVerbose } from "./log";
 
 export type DBOptions = {
   name: string;
   host: string;
   password?: string;
   username: string;
-  outFile?: string;
   dockerContainer?: string;
 }
 
-export type PGDumpOptions = DBOptions;
+export type PGDumpOptions = DBOptions & { outFile?: string };
+export type PGRestoreOptions = DBOptions & { inFile?: string };
 
 export function pgDump({dockerContainer, password, host, name, username, outFile = "./backup.db"}: PGDumpOptions) {
   logInfo(`Backup Postgres db "${name}" from "${host}" ...`);
@@ -34,23 +34,40 @@ export function pgDump({dockerContainer, password, host, name, username, outFile
     options = {...options, stdio: 'ignore'};
   execSync(cmd, options);
 
-  checkFileCreated(outFile);
+  checkFileExists(outFile);
 
   logSuccessVerbose(`Done! File: ${outFile}`);
 }
 
-function checkFileCreated(outFile: string) {
-  if (!existsSync(outFile)) {
-    const errorMsg = `Output file not created: ${outFile}`;
-    logError(errorMsg);
-    throw new Error(errorMsg);
-  }
-}
+export function pgRestore({dockerContainer, password, host, name, username, inFile = "./backup.db"}: PGRestoreOptions) {
+  logInfo(`Restore Postgres db "${name}" from file ${inFile} to "${host}" ...`);
+  checkFileExists(inFile);
+  
+  let cmd = "";
+  if (dockerContainer)
+    cmd += `docker exec -e`;
+   
+  if (password)
+    cmd += `PGPASSWORD=${password} `;
+  
+  if (dockerContainer)
+    cmd += `-i ${dockerContainer}`;
 
-function checkFileNotExists(outFile: string) {
-  if (existsSync(outFile)) {
-    const errorMsg = `Output file already exists: ${outFile}`;
-    logError(errorMsg);
-    throw new Error(errorMsg);
+  cmd += `pg_restore -h ${host} -U ${username} -c -d ${name} < ${inFile}`;
+
+  let options = {};
+  if (logGetLevel() !== 'all')
+    options = {...options, stdio: 'ignore'};
+  execSync(cmd, options);
+
+  if (dockerContainer) {
+    if (logGetLevel() !== 'all') {
+      options = {...options, stdio: 'ignore'};
+      logInfoVerbose("Flushing cache ...");
+    }
+    const cmd = `docker exec -i ${dockerContainer} rm -rf data/cache`;
+    execSync(cmd, options);
   }
-} 
+
+  logSuccessVerbose(`Done!`);
+}

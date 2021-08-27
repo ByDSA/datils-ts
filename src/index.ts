@@ -1,5 +1,6 @@
 export * from "./backups";
 export * from "./db";
+export * from "./files";
 export * from "./linux";
 export * from "./log";
 export * from "./net";
