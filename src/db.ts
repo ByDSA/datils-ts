@@ -1,4 +1,5 @@
 import { execSync } from "child_process";
+import { dockerExecSync } from "./docker";
 import { checkFileExists, checkFileNotExists } from "./files";
 import { logGetLevel, logInfo, logInfoVerbose, logSuccessVerbose } from "./log";
 
@@ -65,8 +66,10 @@ export function pgRestore({dockerContainer, password, host, name, username, inFi
       options = {...options, stdio: 'ignore'};
       logInfoVerbose("Flushing cache ...");
     }
-    const cmd = `docker exec -i ${dockerContainer} rm -rf data/cache`;
-    execSync(cmd, options);
+    dockerExecSync({
+      container: dockerContainer,
+      cmd: "rm -rf data/cache"
+    });
   }
 
   logSuccessVerbose(`Done!`);
