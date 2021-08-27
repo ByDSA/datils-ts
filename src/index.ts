@@ -9,4 +9,4 @@ export * from "./string";
 export * from "./time";
 export * from "./uri";
 export * from "./video";
-
+export * from "./docker";
