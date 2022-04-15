@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2015",
+    "strict": true,
+    "module": "es2015",
     "declaration": true,
+    "removeComments": true,
+    "target": "es2015",
+    "sourceMap": true,
     "outDir": "./dist",
-    "esModuleInterop": true
+    "baseUrl": "./src",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.json"
-  ],
-  "exclude": [
-    "**/*.spec.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.json"],
+  "exclude": ["**/*.spec.ts"]
 }

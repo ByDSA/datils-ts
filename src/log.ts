@@ -1,85 +1,86 @@
+/* eslint-disable default-case-last */
 import chalk from "chalk";
 
-export type VerboseLevel = 'none' | 'info' | 'all' | 'error';
+export type VerboseLevel = "all" | "error" | "info" | "none";
 
-let _verboseLevel: VerboseLevel = 'info';
+let verboseLevel: VerboseLevel = "info";
 
-export function logSetLevel(verboseLevel: VerboseLevel) {
-  _verboseLevel = verboseLevel
+export function logSetLevel(level: VerboseLevel) {
+  verboseLevel = level;
 }
 
 export function logGetLevel(): VerboseLevel {
-  return _verboseLevel;
+  return verboseLevel;
 }
 
 export function logInfo(msg: string) {
-  switch (_verboseLevel) {
+  switch (verboseLevel) {
     default:
-    case 'info':
-    case 'all':
+    case "info":
+    case "all":
       console.log(`${chalk.cyan(msg)}`);
       break;
-    case 'none':
-    case 'error':
+    case "none":
+    case "error":
   }
 }
 
 export function logInfoVerbose(msg: string) {
-  switch (_verboseLevel) {
+  switch (verboseLevel) {
     default:
-      case 'all':
-        console.log(`${chalk.cyan(msg)}`);
-        break;
-    case 'info':
-    case 'none':
-    case 'error':
+    case "all":
+      console.log(`${chalk.cyan(msg)}`);
+      break;
+    case "info":
+    case "none":
+    case "error":
   }
 }
 
 export function logSuccess(msg: string) {
-  switch (_verboseLevel) {
+  switch (verboseLevel) {
     default:
-    case 'info':
-    case 'all':
+    case "info":
+    case "all":
       console.log(`${chalk.green(msg)}`);
       break;
-    case 'none':
-    case 'error':
+    case "none":
+    case "error":
   }
 }
 
 export function logSuccessVerbose(msg: string) {
-  switch (_verboseLevel) {
+  switch (verboseLevel) {
     default:
-    case 'all':
+    case "all":
       console.log(`${chalk.green(msg)}`);
       break;
-    case 'info':
-    case 'none':
-    case 'error':
+    case "info":
+    case "none":
+    case "error":
   }
 }
 
 export function logError(msg: string) {
-  switch (_verboseLevel) {
+  switch (verboseLevel) {
     default:
-    case 'info':
-    case 'error':
-    case 'all':
+    case "info":
+    case "error":
+    case "all":
       console.log(`${chalk.red(msg)}`);
       break;
-    case 'none':
+    case "none":
   }
 }
 
 export function logSection(msg: string) {
-  switch (_verboseLevel) {
+  switch (verboseLevel) {
     default:
-    case 'info':
-    case 'all':
+    case "info":
+    case "all":
       console.log(`${chalk.yellow(msg)}`);
       break;
-    case 'error':
-    case 'none':
+    case "error":
+    case "none":
   }
 }
