@@ -1,7 +1,9 @@
 import { copyFileSync, existsSync, rmSync } from "fs";
 import path from "path";
-import { $, cd, quiet } from "zx";
 import DBDump from "../cmd/db/DBDump";
+import find from "../cmd/find";
+import zip from "../cmd/zip";
+import { mkdir } from "../fs";
 import { timestampOfNowUTC } from "../time";
 
 type TmpInfo = {
@@ -15,17 +17,27 @@ type FileInfo = {
 };
 
 type Params = {
-  path: string;
-  name: string;
-  dest: string;
+  basePath?: string;
+  name?: string;
+  filename?: string;
+  outFolder?: string;
 };
 
+function givenOrPwd(given?: string) {
+  if (given)
+    return path.resolve(given);
+
+  return path.resolve(`${process.cwd()}`);
+}
+
 export default class AppBackup {
-  #path: string;
+  #basePath: string;
 
-  #appName: string;
+  #appName?: string;
 
-  #dest: string;
+  #outFolder: string;
+
+  #filename?: string;
 
   #tmpInfo: TmpInfo;
 
@@ -35,12 +47,14 @@ export default class AppBackup {
 
   #dateTimestamp!: string;
 
-  constructor( { path: p, name, dest }: Params) {
-    this.#path = path.resolve(p);
-    this.#dest = path.resolve(dest ?? ".");
-    this.#appName = name ?? path.basename(p);
+  constructor( { basePath, name, outFolder, filename }: Params) {
+    this.#filename = filename ? path.resolve(filename) : undefined;
+    this.#basePath = givenOrPwd(basePath);
+    this.#outFolder = givenOrPwd(outFolder);
 
-    const tmpFolder = `${p}/tmp`;
+    this.#appName = name ?? path.basename(this.#basePath);
+
+    const tmpFolder = `${this.#basePath}/.__tmp__`;
 
     this.#tmpInfo = {
       folder: tmpFolder,
@@ -54,13 +68,13 @@ export default class AppBackup {
   async #prepare() {
     this.#dateTimestamp = timestampOfNowUTC();
     this.#removeTmp();
-    await createFolder(this.#tmpInfo.folder);
+    await mkdir(this.#tmpInfo.folder);
 
     if (this.#files.length > 0)
-      await createFolder(this.#tmpInfo.filesFolder);
+      await mkdir(this.#tmpInfo.filesFolder);
 
     if (this.#dbs.length > 0)
-      await createFolder(this.#tmpInfo.dbFolder);
+      await mkdir(this.#tmpInfo.dbFolder);
   }
 
   #removeTmp() {
@@ -74,8 +88,11 @@ export default class AppBackup {
 
   async make() {
     await this.#prepare();
-    await this.#process();
-    await this.#clear();
+    try {
+      await this.#process();
+    } finally {
+      await this.#clear();
+    }
   }
 
   #clear() {
@@ -91,7 +108,8 @@ export default class AppBackup {
   }
 
   async #compress() {
-    const zipPath = `${this.#dest}/${this.#appName}-${this.#dateTimestamp}.zip`;
+    const filename = this.#filename ?? `${this.#appName}-${this.#dateTimestamp}.zip`;
+    const zipPath = `${this.#outFolder}/${filename}`;
 
     await zip( {
       inputFolder: this.#tmpInfo.folder,
@@ -106,32 +124,42 @@ export default class AppBackup {
   }
 
   async #backupFile(file: string) {
-    const filePath = path.resolve(`${this.#path}/${file}`);
-    const destPath = path.resolve(`${this.#tmpInfo.filesFolder}/${file}`);
+    const relativeFilePath = file.replace(this.#basePath, ".");
+    const destPath = path.resolve(`${this.#tmpInfo.filesFolder}/${relativeFilePath}`);
+    const filePath = path.resolve(`${relativeFilePath}`);
 
-    await createFolder(path.dirname(destPath));
+    await mkdir(path.dirname(destPath));
     copyFileSync(filePath, destPath);
   }
 
-  addDB(db: DBDump) {
+  // eslint-disable-next-line require-await
+  async addDB(db: DBDump) {
     this.#dbs.push(db);
+
+    return this;
   }
 
-  addFile(file: FileInfo) {
+  // eslint-disable-next-line require-await
+  async addFile(file: FileInfo) {
     this.#files.push(file);
+
+    return this;
   }
 
-  async findAndAddEnvFiles() {
-    const envFiles = (await quiet($`find . -type f -name "*.env"`))
-      .stdout
-      .split("\n")
-      .filter((n) => n);
+  async addFiles(pattern: string) {
+    const files = find( {
+      pattern,
+      folder: this.#basePath,
+    } );
 
-    for (const envFile of envFiles) {
-      this.addFile( {
+    for (const envFile of files) {
+      // eslint-disable-next-line no-await-in-loop
+      await this.addFile( {
         path: envFile,
       } );
     }
+
+    return this;
   }
 
   #backupDB() {
@@ -151,24 +179,4 @@ export default class AppBackup {
       } );
     }
   }
-}
-
-async function zip( { inputFolder, out } ) {
-  const currentFolder = process.cwd();
-
-  await cd(inputFolder);
-  const outFolder = path.dirname(out);
-
-  await createFolder(outFolder);
-  try {
-    await $`zip -r "${out}" ./*`;
-  } catch (e: any) {
-    if (!e.stdout.includes("Nothing to do"))
-      throw e;
-  }
-  await cd(currentFolder);
-}
-
-function createFolder(p) {
-  return $`mkdir -p "${p}"`;
 }

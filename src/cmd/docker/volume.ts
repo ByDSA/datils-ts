@@ -2,7 +2,7 @@
 import { $ } from "zx";
 import { SudoParams } from "../params";
 
-type Volume = string;
+export type Volume = string;
 type DockerVolumeParams = SudoParams & {
   volume: Volume;
 };

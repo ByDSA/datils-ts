@@ -37,8 +37,8 @@ export function timestampOf(params: Date | Params) {
 
 function timestampOfDate(date: Date) {
   return `${date.getFullYear()}_${
-    zeroPad(date.getMonth())}_${
-    zeroPad(date.getDate())}_${
+    zeroPad(date.getMonth() + 1)}_${
+    zeroPad(date.getDate())}__${
     zeroPad(date.getHours())}_${
     zeroPad(date.getMinutes())}_${
     zeroPad(date.getSeconds())}`;
@@ -46,8 +46,8 @@ function timestampOfDate(date: Date) {
 
 function timestampOfDateUTC(date: Date) {
   return `${date.getUTCFullYear()}_${
-    zeroPad(date.getUTCMonth())}_${
-    zeroPad(date.getUTCDate())}_${
+    zeroPad(date.getUTCMonth() + 1)}_${
+    zeroPad(date.getUTCDate())}__${
     zeroPad(date.getUTCHours())}_${
     zeroPad(date.getUTCMinutes())}_${
     zeroPad(date.getUTCSeconds())}`;

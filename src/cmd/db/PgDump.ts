@@ -21,6 +21,7 @@ export default class PgDump extends DBDump {
     if (dockerContainer) {
       await exec( {
         ...params,
+        sudo: true,
         container: dockerContainer,
         cmd,
       } );

@@ -22,7 +22,7 @@ export function startContainer(params: Container | DockerContainerParams) {
   return containerCmd("start", params);
 }
 
-export function removeContainer(params: DockerContainerParams) {
+export function removeContainer(params: Container | DockerContainerParams) {
   return containerCmd("rm", params);
 }
 

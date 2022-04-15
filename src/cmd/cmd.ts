@@ -1,4 +1,5 @@
-import { argv, question } from "zx";
+/* eslint-disable import/prefer-default-export */
+import { question } from "zx";
 
 function getBooleanSure(sure: string) {
   switch (sure) {
@@ -16,12 +17,4 @@ export async function questionYesNo(str: string) {
   const sure = await question(str);
 
   return getBooleanSure(sure);
-}
-
-export {
-  default as getEnv,
-} from "./env/get-env.js";
-
-export function getOut() {
-  return argv.out ?? argv.o;
 }

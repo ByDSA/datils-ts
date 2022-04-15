@@ -1,14 +1,31 @@
-import { $ } from "zx";
+import { execSync } from "child_process";
+import { EnvObj, stringifyDockerEnvObj } from "../env";
 import { getSudoStr } from "../params";
 import { DockerContainerParams } from "./container";
 
 type DockerExecParams =
 DockerContainerParams & {
-    cmd: string;
-  };
+  cmd: string;
+} & {
+  env?: EnvObj;
+};
 
-export default function exec(params: DockerExecParams) {
+// eslint-disable-next-line require-await
+export default async function exec(params: DockerExecParams) {
   const sudo = `${getSudoStr(params)} `;
+  const envs = params.env ? stringifyDockerEnvObj(params.env) : null;
+  const cmd1 = `${sudo}docker exec`;
+  const cmd2 = `-i ${params.container} ${params.cmd}`;
+  const cmdWithEnv = joinCmd(cmd1, cmd2, envs);
+  const cmdHiddenEnv = joinCmd(cmd1, cmd2, envs ? "*HIDDEN ENV*" : null);
 
-  return $`${sudo}docker exec -i ${params.container} ${params.cmd}`;
+  console.log(`Executing: ${cmdHiddenEnv}`);
+  execSync(cmdWithEnv);
+}
+
+function joinCmd(cmd1: string, cmd2: string, envsStr: string | null) {
+  if (envsStr)
+    return `${cmd1} ${envsStr} ${cmd2}`;
+
+  return `${cmd1} ${cmd2}`;
 }
