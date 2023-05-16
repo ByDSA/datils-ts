@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { $ } from "zx";
-import { SudoParams } from "../params";
+import { SudoParams } from "../params.ts";
 
 export type Volume = string;
 type DockerVolumeParams = SudoParams & {

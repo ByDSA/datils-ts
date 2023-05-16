@@ -1,6 +1,6 @@
 import path from "path";
 import { $, cd } from "zx";
-import { mkdir } from "../../fs";
+import { mkdir } from "../../fs.ts";
 
 type ZipParams = {
   inputFolder: string;

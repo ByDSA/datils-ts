@@ -1,10 +1,10 @@
 import { copyFileSync, existsSync, rmSync } from "fs";
 import path from "path";
-import DBDump from "../cmd/db/DBDump";
-import find from "../cmd/find";
-import zip from "../cmd/zip";
-import { mkdir } from "../fs";
-import { timestampOfNowUTC } from "../time";
+import DBDump from "../cmd/db/DBDump.ts";
+import find from "../cmd/find.ts";
+import zip from "../cmd/zip/index.ts";
+import { mkdir } from "../fs.ts";
+import { timestampOfNowUTC } from "../time.ts";
 
 type TmpInfo = {
   folder: string;

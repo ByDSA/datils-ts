@@ -1,5 +1,5 @@
 import { execSync } from "child_process";
-import { DBOptions } from "./opts";
+import { DBOptions } from "./opts.ts";
 
 export type MySQLDumpOptions = DBOptions & { outFile?: string };
 

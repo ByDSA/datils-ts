@@ -1,5 +1,5 @@
 import { $ } from "zx";
-import { getSudoStr, SudoParams } from "../params";
+import { getSudoStr, SudoParams } from "../params.ts";
 
 export type Container = string;
 

@@ -1,2 +1,3 @@
-export * from "./files";
-export * from "./paths";
+export * from "./files.ts";
+
+export * from "./paths.ts";

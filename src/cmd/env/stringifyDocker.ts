@@ -1,4 +1,4 @@
-import { EnvObj } from "./types";
+import { EnvObj } from "./types.ts";
 
 export default function stringifyDocker(envObj: EnvObj) {
   const envStr = Object.entries(envObj);

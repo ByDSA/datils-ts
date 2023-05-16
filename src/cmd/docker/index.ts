@@ -1,11 +1,11 @@
 export {
   removeContainer, startContainer, stopContainer,
-} from "./container";
+} from "./container.ts";
 
 export {
   default as exec,
-} from "./exec";
+} from "./exec.ts";
 
 export {
   removeVolume,
-} from "./volume";
+} from "./volume.ts";

@@ -2,7 +2,7 @@ import { existsSync } from "fs";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { $ } from "zx";
-import { logError } from "./log";
+import { logError } from "./log.ts";
 
 export function checkFileExists(filePath: string) {
   if (!existsSync(filePath)) {

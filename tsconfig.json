@@ -6,14 +6,16 @@
     "removeComments": true,
     "target": "es2015",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./build",
     "baseUrl": "./src",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
   "include": ["src/**/*.ts", "src/**/*.json"],
   "exclude": ["**/*.spec.ts"]

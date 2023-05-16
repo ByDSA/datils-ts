@@ -1,4 +1,4 @@
-import { DBOptions } from "./opts";
+import { DBOptions } from "./opts.ts";
 
 export type DBDumpParams = DBOptions & {
   outFile: string;

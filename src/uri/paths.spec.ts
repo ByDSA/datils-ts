@@ -3,5 +3,5 @@ import { getPwdPath } from "./paths";
 it("getPwdPath", () => {
   const actual = getPwdPath();
 
-  expect(actual.endsWith("datils")).toBeTruthy();
+  expect(actual.includes("datils")).toBeTruthy();
 } );

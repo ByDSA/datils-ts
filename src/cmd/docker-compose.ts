@@ -1,5 +1,5 @@
 import { $ } from "zx";
-import { EnvParam, stringifyEnvObj } from "./env";
+import { EnvParam, stringifyEnvObj } from "./env/index.ts";
 
 type Params = Partial<{
   env: EnvParam;

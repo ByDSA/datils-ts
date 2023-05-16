@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 
 import path from "path";
-import { getAvailableFile, getLastPartOf, removeExtensionOf } from "../uri";
-import * as ffmpeg from "./ffmpeg";
+import { getAvailableFile, getLastPartOf, removeExtensionOf } from "../uri/index.ts";
+import * as ffmpeg from "./ffmpeg.ts";
 
 type OptsType = { outPath?: string; filename?: string };
 export function download(url: string, opts: OptsType = {
