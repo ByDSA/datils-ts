@@ -18,7 +18,7 @@ export function dockerRunSync({
     let cmd = "";
     if (sudo)
       cmd += "sudo ";
-    cmd += `docker-compose -f ${dockerComposeFile} up ${args}`;
+    cmd += `docker compose -f ${dockerComposeFile} up ${args}`;
     logInfoVerbose(`Executing '${cmd}'`);
     execSync(cmd, { stdio: 'inherit' });
   }
@@ -33,14 +33,14 @@ export function dockerStopSync({
     let cmd = "";
     if (sudo)
       cmd += "sudo ";
-    cmd += `docker-compose -f ${dockerComposeFile} stop`;
+    cmd += `docker compose -f ${dockerComposeFile} stop`;
     logInfoVerbose(`Executing '${cmd}'`);
     execSync(cmd, { stdio: 'inherit' });
   }
 }
 
 function searchForDockerComposeFile(): string | null {
-  logInfoVerbose("Searching for docker-compose file ...");
+  logInfoVerbose("Searching for docker compose file ...");
   loadEnvIfExists();
 
   const fileName = process.env.YAML ?? "docker-compose.yml";
