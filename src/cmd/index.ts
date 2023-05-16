@@ -1,3 +1,3 @@
-export * from "./db/index.ts";
+export * from "./db";
 
-export * from "./docker/index.ts";
+export * from "./docker";

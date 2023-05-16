@@ -1,7 +1,7 @@
-import { questionYesNo } from "../cmd.ts";
-import { upDetach } from "../docker-compose.ts";
-import { Container, removeContainer, stopContainer } from "./container.ts";
-import { Volume, removeVolume } from "./volume.ts";
+import { questionYesNo } from "../cmd";
+import { upDetach } from "../docker-compose";
+import { Container, removeContainer, stopContainer } from "./container";
+import { Volume, removeVolume } from "./volume";
 
 type ResetDataParams = {
   volume: Volume;

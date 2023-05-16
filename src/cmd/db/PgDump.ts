@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import path from "path";
-import { exec } from "../docker/index.ts";
-import DBDump, { DBDumpParams } from "./DBDump.ts";
+import { exec } from "../docker/index";
+import DBDump, { DBDumpParams } from "./DBDump";
 
 export default class PgDump extends DBDump {
   async dump() {

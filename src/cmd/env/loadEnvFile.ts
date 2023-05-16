@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 import path from "path";
-import getEnv from "../argv/getEnv.ts";
+import getEnv from "../argv/getEnv";
 
 type Params = Partial<{
   path: string;

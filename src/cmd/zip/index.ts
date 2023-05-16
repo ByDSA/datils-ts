@@ -1,6 +1,6 @@
+import { execSync } from "child_process";
 import path from "path";
-import { $, cd } from "zx";
-import { mkdir } from "../../fs.ts";
+import { mkdir } from "../../fs";
 
 type ZipParams = {
   inputFolder: string;
@@ -9,15 +9,19 @@ type ZipParams = {
 export default async function zip( { inputFolder, out }: ZipParams) {
   const currentFolder = process.cwd();
 
-  await cd(inputFolder);
+  execSync(`cd "${inputFolder}"`);
   const outFolder = path.dirname(out);
 
   await mkdir(outFolder);
   try {
-    await $`zip -r "${out}" ./*`;
+    await new Promise((s) => {
+      const r = execSync(`zip -r "${out}" ./*`);
+
+      s(r);
+    } );
   } catch (e: any) {
     if (!e.stdout.includes("Nothing to do"))
       throw e;
   }
-  await cd(currentFolder);
+  execSync(`cd ${currentFolder}`);
 }

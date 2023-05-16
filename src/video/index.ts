@@ -1,3 +1,3 @@
-export * from "./ffmpeg.ts";
+export * from "./ffmpeg";
 
-export * from "./m3u8.ts";
+export * from "./m3u8";

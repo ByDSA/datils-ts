@@ -1,9 +1,9 @@
 export {
   default as MySqlDump,
-} from "./MySqlDump.ts";
+} from "./MySqlDump";
 
 export {
   default as PgDump,
-} from "./PgDump.ts";
+} from "./PgDump";
 
-export * from "./opts.ts";
+export * from "./opts";

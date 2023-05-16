@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import path from "path";
-import DBDump, { DBDumpParams } from "./DBDump.ts";
+import DBDump, { DBDumpParams } from "./DBDump";
 
 export default class MySqlDump extends DBDump {
   // GENERADO ENTERO POR COPILOT, NO PROBADO

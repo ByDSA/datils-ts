@@ -1,5 +1,5 @@
-import { $ } from "zx";
-import { EnvParam, stringifyEnvObj } from "./env/index.ts";
+import { EnvParam, stringifyEnvObj } from "./env";
+import { execSync } from "./linux";
 
 type Params = Partial<{
   env: EnvParam;
@@ -47,7 +47,11 @@ function dockerCompose(cmd: string, params?: Params) {
 
   ret += `docker-compose ${preParamsStr} ${cmd} ${postParamsStr}`;
 
-  return $`${ret}`;
+  return new Promise(((s) => {
+    const r = execSync(ret);
+
+    s(r);
+  } ));
 }
 
 export function upDetach(params?: Params) {

@@ -1,4 +1,4 @@
-import { execSync } from "./cmd/linux.ts";
+import { execSync } from "./cmd/linux";
 
 export type DownloadOptions = {
     folder?: string;

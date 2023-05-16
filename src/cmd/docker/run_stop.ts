@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 
 import { existsSync } from "fs";
 
-import { logInfoVerbose } from "../../log.ts";
+import { logInfoVerbose } from "../../log";
 
-import { ArgDettachDefault, ArgDettachOpt, ArgPathOpt, ArgSudoDefault, ArgSudoOpt } from "./opts.ts";
+import { ArgDettachDefault, ArgDettachOpt, ArgPathOpt, ArgSudoDefault, ArgSudoOpt } from "./opts";
 
 export type DockerRunOpts = ArgDettachOpt & ArgPathOpt & ArgSudoOpt;
 

@@ -1,21 +1,19 @@
 {
   "compilerOptions": {
     "strict": true,
-    "module": "es2020",
+    "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
     "target": "es2015",
     "sourceMap": true,
     "outDir": "./build",
     "baseUrl": "./src",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "allowImportingTsExtensions": true
+    "isolatedModules": true
   },
   "include": ["src/**/*.ts", "src/**/*.json"],
   "exclude": ["**/*.spec.ts"]

@@ -1,5 +1,5 @@
 import { execSync as execSyncImported, ExecSyncOptionsWithStringEncoding } from "child_process";
-import { download, isValidURL } from "../net.ts";
+import { download, isValidURL } from "../net";
 import longnames from "./longnames.json";
 
 export function isInstalled(application: string): boolean {

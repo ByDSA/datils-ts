@@ -2,22 +2,22 @@
   "name": "datils",
   "version": "3.0.0",
   "description": "",
-  "type": "module",
   "scripts": {
     "test": "jest",
     "prebuild": "rm -rf build",
     "build": "tsc",
     "copyfiles": "ln -s ../../src/cmd/longnames.json build/cmd/longnames.json"
   },
-  "exports": {
-    "./*": "./build/*"
-  },
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "/build"
+  ],
   "author": "Daniel Sales",
   "license": "ISC",
   "dependencies": {
     "chalk": "5.2.0",
-    "dotenv": "16.0.3",
-    "zx": "7.2.2"
+    "dotenv": "16.0.3"
   },
   "devDependencies": {
     "@types/jest": "29.5.1",
