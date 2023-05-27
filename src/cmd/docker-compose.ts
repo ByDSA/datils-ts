@@ -1,5 +1,6 @@
-import { $ } from "zx";
+import Argv from "./argv/Argv";
 import { EnvParam, stringifyEnvObj } from "./env";
+import { exec as execCmd } from "./process";
 
 type Params = Partial<{
   env: EnvParam;
@@ -7,25 +8,45 @@ type Params = Partial<{
   sudo: boolean;
 }>;
 
-function params2String(params: Params) {
+type ExecParams = Params & Partial<{
+  disableTTY: boolean;
+}>;
+
+function generateArgs(params?: Params) {
+  if (!params) {
+    return {
+      preParams: new Argv(),
+      postParams: new Argv(),
+    };
+  }
+
   const { env, dettach } = params;
-  let preParamsStr = "";
-  let postParamsStr = "";
+  const preParams = new Argv();
+  const postParams = new Argv();
 
   if (env)
-    preParamsStr += `--env-file ${env} `;
+    preParams.push(`--env-file ${env}`);
 
   if (dettach)
-    postParamsStr += "-d ";
+    postParams.push("-d");
 
   return {
-    preParamsStr,
-    postParamsStr,
+    preParams,
+    postParams,
   };
 }
 
-export function exec(service: string, cmd: string, params?: Params) {
-  return dockerCompose(`exec ${service} ${cmd}`, params);
+export function exec(service: string, cmd: string, params?: ExecParams) {
+  const argv = new Argv();
+
+  argv.push("exec");
+
+  if (params?.disableTTY)
+    argv.push("-T");
+
+  argv.push(service, cmd);
+
+  return dockerCompose(argv.toString(), params);
 }
 
 export function up(params?: Params) {
@@ -33,21 +54,26 @@ export function up(params?: Params) {
 }
 
 function dockerCompose(cmd: string, params?: Params) {
-  const paramsStr = params2String(params ?? {
-  } );
-  const { postParamsStr } = paramsStr;
-  let { preParamsStr } = paramsStr;
-  let ret = "";
+  const argv = new Argv();
 
   if (params?.sudo)
-    ret += "sudo ";
+    argv.push("sudo");
+
+  argv.push("docker-compose");
 
   if (typeof params?.env === "object")
-    preParamsStr += `-e ${stringifyEnvObj(params.env)} `;
+    argv.push(`-e ${stringifyEnvObj(params.env)}`);
 
-  ret += `docker-compose ${preParamsStr} ${cmd} ${postParamsStr}`;
+  const argvPrePost = generateArgs(params);
 
-  return $`${ret}`;
+  argv.push(
+    argvPrePost.preParams,
+    cmd,
+    argvPrePost.postParams,
+  );
+  console.log(argv.toString());
+
+  return execCmd(argv.toString());
 }
 
 export function upDetach(params?: Params) {
