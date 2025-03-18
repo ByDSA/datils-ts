@@ -2,8 +2,8 @@ export type ArgPathOpt = { path?: string };
 
 export type ArgSudoOpt = { sudo?: boolean };
 
-export const ArgSudoDefault = false;
+export const ARG_SUDO_DEFAULT = false;
 
 export type ArgDettachOpt = { dettach?: boolean };
 
-export const ArgDettachDefault = true;
+export const ARG_DETTACH_DEFAULT = true;

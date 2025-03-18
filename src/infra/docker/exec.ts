@@ -1,6 +1,6 @@
-import { execSync } from "child_process";
+import { execSync } from "node:child_process";
 import { EnvObj, stringifyDockerEnvObj } from "../env";
-import { getSudoStr } from "../../cmd/params";
+import { getSudoStr } from "../../node/cmd/params";
 import { DockerContainerParams } from "./container";
 
 type DockerExecParams =
@@ -11,7 +11,7 @@ DockerContainerParams & {
 };
 
 // eslint-disable-next-line require-await
-export default async function exec(params: DockerExecParams) {
+export async function exec(params: DockerExecParams) {
   const sudo = `${getSudoStr(params)} `;
   const envs = params.env ? stringifyDockerEnvObj(params.env) : null;
   const cmd1 = `${sudo}docker exec`;

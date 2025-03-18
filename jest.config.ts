@@ -1,10 +1,17 @@
-export default {
+const config = {
+  moduleDirectories: [
+    "node_modules",
+    "src",
+  ],
   roots: ["<rootDir>/src"],
   transform: {
     "^.+\\.tsx?$": "ts-jest",
-    "^.+\\.jsx?$": require.resolve("babel-jest"),
   },
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-  transformIgnorePatterns: ["<rootDir>/node_modules/"],
+  moduleNameMapper: {
+    "^tests($|/.*)$": "<rootDir>/tests/$1",
+  },
 };
+
+export default config;

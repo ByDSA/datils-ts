@@ -1,20 +1,14 @@
-import { execSync } from "child_process";
-
+import { execSync } from "node:child_process";
+import { existsSync } from "node:fs";
 import dotenv from "dotenv";
-
-import { existsSync } from "fs";
-
 import { logInfoVerbose } from "../../log";
-
-import { ArgDettachDefault, ArgDettachOpt, ArgPathOpt, ArgSudoDefault, ArgSudoOpt } from "./opts";
+import { ARG_DETTACH_DEFAULT, ArgDettachOpt, ArgPathOpt, ARG_SUDO_DEFAULT, ArgSudoOpt } from "./opts";
 
 export type DockerRunOpts = ArgDettachOpt & ArgPathOpt & ArgSudoOpt;
 
-export function dockerRunSync( { dettach = ArgDettachDefault,
+export function dockerRunSync( { dettach = ARG_DETTACH_DEFAULT,
 
-  sudo = ArgSudoDefault }: DockerRunOpts = {
-
-} ) {
+  sudo = ARG_SUDO_DEFAULT }: DockerRunOpts = {} ) {
   const dockerComposeFile = searchForDockerComposeFile();
 
   if (dockerComposeFile) {
@@ -44,9 +38,7 @@ export function dockerRunSync( { dettach = ArgDettachDefault,
 
 export type DockerStopOpts = ArgPathOpt & ArgSudoOpt;
 
-export function dockerStopSync( { sudo = ArgSudoDefault }: DockerStopOpts = {
-
-} ) {
+export function dockerStopSync( { sudo = ARG_SUDO_DEFAULT }: DockerStopOpts = {} ) {
   const dockerComposeFile = searchForDockerComposeFile();
 
   if (dockerComposeFile) {

@@ -1,5 +1,4 @@
-
-export default function getEnv() {
+export function getEnv() {
   let ENV: string = "";
 
   process.argv.forEach((arg) => {

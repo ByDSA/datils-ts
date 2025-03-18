@@ -31,7 +31,7 @@ export function getBetween(
   if (!includeBegin)
     indexA += begin.length;
 
-  const fragmentAB = fragmentUntilB.substring(indexA);
+  const fragmentAb = fragmentUntilB.substring(indexA);
 
-  return fragmentAB;
+  return fragmentAb;
 }
