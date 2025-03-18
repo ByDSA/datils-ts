@@ -1,9 +1,9 @@
-import { add } from "../add";
-import { frac } from "../frac";
-import { mult } from "../mult";
+import { add } from "../add/add";
+import { frac } from "../frac/Frac";
+import { mult } from "../mult/mult";
 import { NumExp } from "../NumExp";
-import { pow } from "../pow";
-import { sub } from "../sub";
+import { pow } from "../pow/Pow";
+import { sub } from "../sub/sub";
 import { abs } from "./Abs";
 
 describe.each([

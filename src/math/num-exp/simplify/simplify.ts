@@ -1,4 +1,4 @@
-import { AbsExp } from "../abs";
+import { AbsExp } from "../abs/AbsExp";
 import { NumExp } from "../NumExp";
 import { simplifyAbs } from "./abs";
 

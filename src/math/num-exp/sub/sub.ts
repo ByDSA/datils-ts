@@ -1,5 +1,5 @@
-import { mult } from "..";
-import { add } from "../add";
+import { mult } from "../mult/mult";
+import { add } from "../add/add";
 import { NumExp as Ratio } from "../NumExp";
 
 export function sub(self: Ratio, other: Ratio): Ratio {

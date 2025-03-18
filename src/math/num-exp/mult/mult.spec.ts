@@ -1,4 +1,4 @@
-import { frac } from "../frac";
+import { frac } from "../frac/Frac";
 import { NumExp } from "../NumExp";
 import { pow2 } from "../pow2/Pow2";
 import { mult } from "./mult";
