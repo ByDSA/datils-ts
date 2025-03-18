@@ -6,20 +6,14 @@
   "author": "Daniel Sales Álvarez <danisales.es@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ByDSA/datils-ts.git",
-    "directory": "packages"
+    "url": "https://github.com/ByDSA/datils-ts.git"
   },
-  "main": "index.js",
-  "files": [
-    "*"
-  ],
   "scripts": {
     "build": "bin/build.mjs",
     "check": "bin/check.mjs",
     "lint": "bin/lint.mjs",
     "test": "jest --runInBand"
   },
-  "types": "build/index.d.ts",
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "29.5.14",
