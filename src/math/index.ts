@@ -31,3 +31,7 @@ export {
 } from "./num-exp";
 
 export * from "./combinatorics";
+
+export {
+  randomN,
+} from "./random/random";
