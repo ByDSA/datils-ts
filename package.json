@@ -11,7 +11,17 @@
   },
   "exports": {
     ".": "./index.js",
-    "./*": "./*"
+    "./caching": "./caching/index.js",
+    "./datatypes": "./datatypes/index.js",
+    "./datatypes/arrays": "./datatypes/arrays/index.js",
+    "./datatypes/immutables": "./datatypes/immutables/index.js",
+    "./datatypes/sets": "./datatypes/sets/index.js",
+    "./math": "./math/index.js",
+    "./math/combinatorics": "./math/combinatorics/index.js",
+    "./math/interval": "./math/interval/index.js",
+    "./math/num-exp": "./math/num-exp/index.js",
+    "./path": "./path/index.js",
+    "./*": "./*.js"
   },
   "main": "index.js",
   "files": [

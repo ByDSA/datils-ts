@@ -1,7 +1,7 @@
 export {
   contains as intervalContains,
   intersects as intervalIntersects,
-  Interval,
+  type Interval,
   isInterval,
   of as intervalOf,
   stringify as intervalStringify,
@@ -10,24 +10,24 @@ export {
 export * from "./misc";
 
 export {
-  AbsExp,
-  AddExp,
-  FracExp,
   MultExp,
-  NegExp,
-  NumExp,
-  Pow2Exp,
-  PowExp,
-  SubExp,
-  abs as numExpAbs,
-  add as numExpAdd,
-  frac as numExpFrac,
   mult as numExpMult,
-  neg as numExpNeg,
-  pow as numExpPow,
-  pow2 as numExpPow2,
-  simplify as numExpSimplify,
   sub as numExpSub,
+  SubExp,
+  Pow2Exp,
+  pow2 as numExpPow2,
+  PowExp,
+  pow as numExpPow,
+  neg as numExpNeg,
+  NegExp,
+  FracExp,
+  frac as numExpFrac,
+  addFrac as numExpAddFrac,
+  add as numExpAdd,
+  AbsExp,
+  abs as numExpAbs,
+  NumExp,
+  simplify as numExpSimplify,
 } from "./num-exp";
 
 export * from "./combinatorics";

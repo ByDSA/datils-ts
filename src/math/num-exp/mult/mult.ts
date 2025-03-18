@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { FracExp } from "../frac";
+import { FracExp } from "../frac/FracExp";
 import { NumExp } from "../NumExp";
 import { PowExp } from "../pow/PowExp";
 import { multFrac } from "./frac";

@@ -1,4 +1,4 @@
-import { frac } from "../frac";
+import { frac } from "../frac/Frac";
 import { NumExp } from "../NumExp";
 
 describe.each([

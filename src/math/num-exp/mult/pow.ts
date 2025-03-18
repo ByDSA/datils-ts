@@ -1,7 +1,8 @@
-import { add } from "../add";
+import { add } from "../add/add";
 import { NumExp } from "../NumExp";
-import { PowExp } from "../pow";
-import { pow2, Pow2Exp } from "../pow2";
+import { PowExp } from "../pow/PowExp";
+import { Pow2Exp } from "../pow2/Pow2Exp";
+import { pow2 } from "../pow2/Pow2";
 import { MultExp } from "./MultExp";
 
 export function multPow(self: PowExp, other: NumExp): NumExp {

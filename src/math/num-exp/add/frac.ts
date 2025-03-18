@@ -1,8 +1,9 @@
 /* eslint-disable import/no-cycle */
 import { lcm } from "../../lcm";
-import { frac, FracExp } from "../frac";
-import { mult } from "../mult";
-import { neg } from "../neg";
+import { frac } from "../frac/Frac";
+import { FracExp } from "../frac/FracExp";
+import { mult } from "../mult/mult";
+import { neg } from "../neg/Neg";
 import { NumExp } from "../NumExp";
 import { Sign } from "../Sign";
 import { add } from "./add";

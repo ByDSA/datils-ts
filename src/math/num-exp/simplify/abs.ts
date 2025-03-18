@@ -1,5 +1,7 @@
-import { AbsExp } from "../abs";
-import { frac, FracExp } from "../frac";
+/* eslint-disable import/no-cycle */
+import { AbsExp } from "../abs/AbsExp";
+import { frac } from "../frac/Frac";
+import { FracExp } from "../frac/FracExp";
 import { NumExp } from "../NumExp";
 
 export function simplifyAbs(exp: AbsExp): NumExp {

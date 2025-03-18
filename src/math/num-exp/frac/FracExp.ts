@@ -1,5 +1,6 @@
-import { abs } from "../abs";
-import { mult } from "../mult";
+/* eslint-disable import/no-cycle */
+import { abs } from "../abs/Abs";
+import { mult } from "../mult/mult";
 import { NumExp } from "../NumExp";
 import { Sign } from "../Sign";
 import { simplifyAbs } from "../simplify/abs";

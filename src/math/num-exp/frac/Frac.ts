@@ -1,4 +1,4 @@
-import { NumExp } from "../NumExp";
+import type { NumExp } from "../NumExp";
 import { FracExp } from "./FracExp";
 
 export function frac(numerator: NumExp, denominator: NumExp): FracExp {
