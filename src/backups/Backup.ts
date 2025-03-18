@@ -1,7 +1,7 @@
 import { copyFileSync, existsSync, rmSync } from "fs";
 import path from "path";
-import DBDump from "../cmd/db/DBDump";
-import find from "../cmd/find";
+import DBDump from "../net/db/DBDump";
+import find from "../fs/find";
 import zip from "../cmd/zip";
 import { mkdir } from "../fs";
 import { timestampOfNowUTC } from "../time";

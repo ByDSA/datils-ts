@@ -8,10 +8,8 @@ export * from "./log";
 
 export * from "./net";
 
-export * from "./shell";
-
-export * from "./string";
+export * from "./datatypes";
 
 export * from "./time";
 
-export * from "./uri";
+export * from "./path";

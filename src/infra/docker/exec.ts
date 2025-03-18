@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import { EnvObj, stringifyDockerEnvObj } from "../env";
-import { getSudoStr } from "../params";
+import { getSudoStr } from "../../cmd/params";
 import { DockerContainerParams } from "./container";
 
 type DockerExecParams =

@@ -1,8 +1,4 @@
 
-export {
-  default as getArgvEnv,
-} from "./getEnv";
-
 export function getArgvOutFolder() {
   let outFolder: string | undefined;
 

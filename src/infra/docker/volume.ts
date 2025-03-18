@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { execSync } from "child_process";
-import { SudoParams } from "../params";
+import { SudoParams } from "../../cmd/params";
 
 export type Volume = string;
 type DockerVolumeParams = SudoParams & {

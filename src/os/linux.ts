@@ -1,6 +1,6 @@
 import { execSync as execSyncImported, ExecSyncOptionsWithStringEncoding } from "child_process";
 import { download, isValidURL } from "../net";
-import longnames from "./longnames.json";
+import longnames from "../cmd/longnames.json";
 
 export function isInstalled(application: string): boolean {
   const count = getCount(application);
