@@ -1,3 +1,0 @@
-export {
-  exec,
-} from "./exec";
