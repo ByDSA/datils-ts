@@ -1,4 +1,4 @@
-import { questionYesNo } from "../cmd";
+import { questionYesNo } from "../../cmd/cmd";
 import { upDetach } from "../docker-compose";
 import { Container, removeContainer, stopContainer } from "./container";
 import { Volume, removeVolume } from "./volume";

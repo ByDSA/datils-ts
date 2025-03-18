@@ -1,6 +1,6 @@
 import Argv from "./argv/Argv";
 import { EnvParam, stringifyEnvObj } from "./env";
-import { exec as execCmd } from "./process";
+import { exec as execCmd } from "../process";
 
 type Params = Partial<{
   env: EnvParam;

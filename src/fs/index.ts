@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync } from "fs";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import { logError } from "./log";
+import { logError } from "../log";
 
 export function checkFileExists(filePath: string) {
   if (!existsSync(filePath)) {
@@ -40,3 +40,5 @@ export function parentFolderPathOf(filePath = path.resolve(__filename)) {
 export function currentFilePath() {
   return path.resolve(fileURLToPath(path.resolve(__filename)));
 }
+
+export * from "./files";

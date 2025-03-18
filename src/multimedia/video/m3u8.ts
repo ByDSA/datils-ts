@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import path from "path";
-import { getAvailableFile, getLastPartOf, removeExtensionOf } from "../uri";
+import { getAvailableFile, getLastPartOf, removeExtensionOf } from "../../path";
 import * as ffmpeg from "./ffmpeg";
 
 type OptsType = { outPath?: string; filename?: string };

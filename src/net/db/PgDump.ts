@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import path from "path";
-import { exec } from "../docker";
+import { exec } from "../../infra/docker";
 import DBDump, { DBDumpParams } from "./DBDump";
 
 export default class PgDump extends DBDump {

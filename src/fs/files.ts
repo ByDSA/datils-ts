@@ -1,10 +1,6 @@
 
-import * as fs from "fs";
-import * as path from "path";
-
-export function removeExtensionOf(uri) {
-  return uri.substring(0, uri.lastIndexOf("."));
-}
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 export type RenamedNumberType = { num: number; name: string };
 
