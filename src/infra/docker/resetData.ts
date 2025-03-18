@@ -1,4 +1,4 @@
-import { questionYesNo } from "../../cmd/cmd";
+import { questionYesNo } from "../../node/cmd/cmd";
 import { upDetach } from "../docker-compose";
 import { Container, removeContainer, stopContainer } from "./container";
 import { Volume, removeVolume } from "./volume";
@@ -7,7 +7,7 @@ type ResetDataParams = {
   volume: Volume;
   container: Container;
 };
-export default async function resetData( { volume, container }: ResetDataParams) {
+export async function resetData( { volume, container }: ResetDataParams) {
   const sure = await questionYesNo("Are you sure?");
 
   if (sure) {

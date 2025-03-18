@@ -1,13 +1,13 @@
 export {
-  default as loadEnvFile,
+  loadEnvFile,
 } from "./loadEnvFile";
 
 export {
-  default as stringifyEnvObj,
+  stringify as stringifyEnvObj,
 } from "./stringify";
 
 export {
-  default as stringifyDockerEnvObj,
+  stringifyDocker as stringifyDockerEnvObj,
 } from "./stringifyDocker";
 
 export * from "./types";

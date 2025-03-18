@@ -3,7 +3,7 @@ export {
 } from "./container";
 
 export {
-  default as exec,
+  exec,
 } from "./exec";
 
 export {

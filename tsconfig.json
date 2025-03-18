@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "module": "CommonJS",
-    "declaration": true,
-    "removeComments": true,
-    "target": "es2015",
-    "sourceMap": true,
-    "outDir": "./build",
-    "baseUrl": "./src",
-    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "strictNullChecks": true,
-    "noImplicitAny": false,
+    "baseUrl": "./src",
+    "declaration": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "./build",
+    "removeComments": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es2015",
+    "typeRoots": ["./node_modules/@types"]
   },
+  "exclude": ["build", "node_modules"],
+  "filesGlob": ["src/**/*.ts"],
   "include": ["src/**/*.ts", "src/**/*.json"],
-  "exclude": ["**/*.spec.ts"]
+  "types": ["node"]
 }

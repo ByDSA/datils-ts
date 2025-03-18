@@ -1,6 +1,6 @@
-import Argv from "./argv/Argv";
+import { Argv } from "../node/cmd/argv/Argv";
+import { exec as execCmd } from "../node/os/process";
 import { EnvParam, stringifyEnvObj } from "./env";
-import { exec as execCmd } from "../process";
 
 type Params = Partial<{
   env: EnvParam;

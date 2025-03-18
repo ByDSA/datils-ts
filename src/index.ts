@@ -1,12 +1,12 @@
-export * from "./backups";
+export * from "./node/backups";
 
-export * from "./cmd";
+export * from "./node/cmd";
 
-export * from "./fs";
+export * from "./node/fs";
 
 export * from "./log";
 
-export * from "./net";
+export * from "./node/net";
 
 export * from "./datatypes";
 

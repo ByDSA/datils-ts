@@ -1,13 +1,13 @@
+import path from "node:path";
 import { config } from "dotenv";
-import path from "path";
-import getEnv from "./getEnv";
+import { getEnv } from "./getEnv";
 
 type Params = Partial<{
   path: string;
   folder: string;
 }>;
 
-export default function loadEnvFile(params?: Params) {
+export function loadEnvFile(params?: Params) {
   const p = params?.path;
   let pEnv: string;
 
