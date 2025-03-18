@@ -1,4 +1,4 @@
-import { $ } from "zx";
+import { execSync } from "child_process";
 import { getSudoStr, SudoParams } from "../params";
 
 export type Container = string;
@@ -30,5 +30,9 @@ function containerCmd(cmd: string, params: Container | DockerContainerParams) {
   const container = getContainerFromParams(params);
   const sudo = typeof params === "string" ? false : `${getSudoStr(params)} `;
 
-  return $`${sudo}docker container ${cmd} ${container}`;
+  return new Promise((s) => {
+    const r = execSync(`${sudo}docker container ${cmd} ${container}`);
+
+    s(r);
+  } );
 }

@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { $ } from "zx";
+import { execSync } from "child_process";
 import { SudoParams } from "../params";
 
 export type Volume = string;
@@ -17,5 +17,9 @@ function getVolumeFromParams(params: DockerVolumeParams | Volume): Volume {
 export function removeVolume(params: DockerVolumeParams | Volume) {
   const volume = getVolumeFromParams(params);
 
-  return $`sudo docker volume rm ${volume}`;
+  return new Promise((s) => {
+    const r = execSync(`sudo docker volume rm ${volume}`);
+
+    s(r);
+  } );
 }

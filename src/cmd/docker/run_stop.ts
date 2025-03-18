@@ -30,7 +30,8 @@ export function dockerRunSync( { dettach = ArgDettachDefault,
 
       cmd += "sudo ";
 
-    cmd += `docker compose -f ${dockerComposeFile} up ${args}`;
+    cmd += `docker-compose -f ${dockerComposeFile} up ${args}`;
+
     logInfoVerbose(`Executing '${cmd}'`);
 
     execSync(cmd, {
@@ -55,7 +56,8 @@ export function dockerStopSync( { sudo = ArgSudoDefault }: DockerStopOpts = {
 
       cmd += "sudo ";
 
-    cmd += `docker compose -f ${dockerComposeFile} stop`;
+    cmd += `docker-compose -f ${dockerComposeFile} stop`;
+
     logInfoVerbose(`Executing '${cmd}'`);
 
     execSync(cmd, {
@@ -67,7 +69,8 @@ export function dockerStopSync( { sudo = ArgSudoDefault }: DockerStopOpts = {
 }
 
 function searchForDockerComposeFile(): string | null {
-  logInfoVerbose("Searching for docker compose file ...");
+  logInfoVerbose("Searching for docker-compose file ...");
+
   loadEnvIfExists();
 
   const fileName = process.env.YAML ?? "docker-compose.yml";

@@ -1,30 +1,37 @@
 export function replaceUnicodeByChar(text: string) {
-    return text.replace(/\\u[\dA-F]{4}/gi,
-        function (match: string): string {
-            return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
-        });
-};
+  return text.replace(
+    /\\u[\dA-F]{4}/gi,
+    (match: string): string => String.fromCharCode(parseInt(match.replace(/\\u/g, ""), 16)),
+  );
+}
 
-export function getBetween(str: string, begin: string, end: string, includeBegin = true, includeEnd = true): string | undefined {
-    // Index B
-    let indexB = str.indexOf(end);
-    if (indexB < 0)
-        return undefined;
+export function getBetween(
+  str: string,
+  begin: string,
+  end: string,
+  includeBegin = true,
+  includeEnd = true,
+): string | undefined {
+  // Index B
+  let indexB = str.indexOf(end);
 
-    if (includeEnd)
-        indexB += end.length;
+  if (indexB < 0)
+    return undefined;
 
-    let fragmentUntilB = str.substring(0, indexB);
+  if (includeEnd)
+    indexB += end.length;
 
-    // Index A
-    let indexA = fragmentUntilB.lastIndexOf(begin);
+  const fragmentUntilB = str.substring(0, indexB);
+  // Index A
+  let indexA = fragmentUntilB.lastIndexOf(begin);
 
-    if (indexA < 0)
-        return undefined;
-    if (!includeBegin)
-        indexA += begin.length;
+  if (indexA < 0)
+    return undefined;
 
-    let fragmentAB = fragmentUntilB.substring(indexA);
+  if (!includeBegin)
+    indexA += begin.length;
 
-    return fragmentAB;
+  const fragmentAB = fragmentUntilB.substring(indexA);
+
+  return fragmentAB;
 }

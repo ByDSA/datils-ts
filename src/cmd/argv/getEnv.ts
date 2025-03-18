@@ -1,7 +1,12 @@
-import { argv } from "zx";
 
 export default function getEnv() {
-  const ENV = argv.env ?? argv.e;
+  let ENV: string = "";
+
+  process.argv.forEach((arg) => {
+    if (arg.startsWith("--env=") || arg.startsWith("-e="))
+      // eslint-disable-next-line prefer-destructuring
+      ENV = arg.split("=")[1];
+  } );
 
   switch (ENV) {
     case "d":

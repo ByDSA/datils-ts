@@ -1,39 +1,39 @@
 {
   "name": "datils",
-  "version": "2.1",
+  "version": "3.0.0",
   "description": "",
-  "type": "module",
   "scripts": {
     "test": "jest",
-    "prebuild": "rimraf dist",
+    "prebuild": "rm -rf build",
     "build": "tsc",
-    "copyfiles": "ln -s ../../src/cmd/longnames.json dist/cmd/longnames.json"
+    "copyfiles": "ln -s ../../src/cmd/longnames.json build/cmd/longnames.json"
   },
-  "exports": {
-    "./*": "./dist/*"
-  },
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "/build"
+  ],
   "author": "Daniel Sales",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.0.1",
-    "dotenv": "^10.0.0",
-    "zx": "^6.0.7"
+    "chalk": "5.2.0",
+    "dotenv": "16.0.3"
   },
   "devDependencies": {
-    "@types/jest": "^27",
-    "@types/node": "^17",
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.18.0",
-    "eslint": "^8.12.0",
+    "@types/jest": "29.5.1",
+    "@types/node": "20.1.5",
+    "@typescript-eslint/eslint-plugin": "5.59.6",
+    "@typescript-eslint/parser": "5.59.6",
+    "eslint": "8.40.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jest": "^25.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27",
-    "ts-jest": "^27.1.4",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.3"
+    "eslint-config-prettier": "8.8.0",
+    "eslint-import-resolver-typescript": "3.5.5",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jest": "27.2.1",
+    "eslint-plugin-prettier": "4.2.1",
+    "jest": "29.5.0",
+    "ts-jest": "29.1.0",
+    "ts-node": "10.9.1",
+    "typescript": "5.0.4"
   }
 }

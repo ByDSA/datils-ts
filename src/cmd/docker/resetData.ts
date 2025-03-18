@@ -1,7 +1,7 @@
 import { questionYesNo } from "../cmd";
 import { upDetach } from "../docker-compose";
 import { Container, removeContainer, stopContainer } from "./container";
-import { removeVolume, Volume } from "./volume";
+import { Volume, removeVolume } from "./volume";
 
 type ResetDataParams = {
   volume: Volume;
