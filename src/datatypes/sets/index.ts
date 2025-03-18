@@ -5,3 +5,7 @@ export function addArray<T>(set: Set<T>, array: T[]): void {
 export function addSet<T>(sourceSet: Set<T>, anotherSet: Set<T>): void {
   anotherSet.forEach(sourceSet.add, sourceSet);
 }
+
+export {
+  SetComparator,
+} from "./setcomparator/SetComparator";
