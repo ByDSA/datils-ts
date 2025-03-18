@@ -15,7 +15,7 @@ export default function find(params: FindParams | Pattern): string[] {
 }
 
 function calculateCmd(params: FindParams | Pattern): string {
-  const folder = typeof params === "object" ? params.folder : undefined ?? ".";
+  const folder = typeof params === "object" ? params.folder : ".";
   const pattern = typeof params === "object" ? params.pattern : params;
 
   return `find "${folder}" -type f -name "${pattern}"`;
