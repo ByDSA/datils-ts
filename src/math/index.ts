@@ -1,4 +1,4 @@
-export type * from "./interval";
+export type * from "./intervals";
 
 export * from "./misc";
 
