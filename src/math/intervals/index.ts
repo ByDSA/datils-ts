@@ -1,6 +1,6 @@
 export * from "./building";
 
-export * from "./guards";
+export * from "./validation";
 
 export {
   type Interval,
