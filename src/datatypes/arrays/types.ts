@@ -1,3 +1,5 @@
 export type NonEmpty<T> = [T, ...T[]];
 
-export type Number = NonEmpty<number>;
+export type NonEmptyNumber = NonEmpty<number>;
+
+export type ArrayMinTwo<T> = [T, T, ...T[]];
