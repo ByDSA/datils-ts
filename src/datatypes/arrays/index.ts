@@ -14,5 +14,5 @@ export {
 
 export type {
   NonEmpty as NonEmptyArray,
-  Number as NonEmptyNumberArray,
+  NonEmptyNumber as NonEmptyNumberArray,
 } from "./types";
