@@ -7,6 +7,10 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "./build",
+    "paths": {
+      "tests": ["../tests"],
+      "tests/*": ["../tests/*"]
+    },
     "removeComments": true,
     "resolveJsonModule": true,
     "sourceMap": true,
@@ -16,7 +20,7 @@
     "typeRoots": ["./node_modules/@types"]
   },
   "exclude": ["build", "node_modules"],
-  "filesGlob": ["src/**/*.ts"],
-  "include": ["src/**/*.ts", "src/**/*.json"],
+  "filesGlob": ["src/**/*.ts", "tests/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.json", "tests/**/*.ts"],
   "types": ["node"]
 }

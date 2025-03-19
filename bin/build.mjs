@@ -5,11 +5,9 @@ import { defaultBuild } from "daproj/zx/build.mjs";
 
 const { outDir } = await defaultBuild();
 
-echo`Editing package.json ...`;
+echo`package.json: adding exports ...`;
 await editPackageJson(
   {
-    scripts: null,
-    devDependencies: null,
     main: "index.js",
     files: [
       "*",

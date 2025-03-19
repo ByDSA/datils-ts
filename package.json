@@ -21,6 +21,7 @@
     "@typescript-eslint/eslint-plugin": "8.26.1",
     "@typescript-eslint/parser": "8.26.1",
     "daproj": "github:ByDSA/daproj",
+    "datils-node": "github:ByDSA/datils-node",
     "hashids": "2.3.0",
     "jest": "29.7.0",
     "prettier": "3.5.3",

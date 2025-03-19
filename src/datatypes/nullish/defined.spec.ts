@@ -1,4 +1,5 @@
-import { definedEntries, expectErrorStackStartsWithThisFilename, undefinedEntries } from "../../../../danisales/mcenter/packages/shared/src/utils/tests";
+import { expectErrorStackStartsWithThisFilename } from "datils-node/testing";
+import { definedEntries, undefinedEntries } from "datils-node/testing/values";
 import { NotDefinedError, assertIsDefined, isDefined } from "./defined";
 
 describe("isDefined", () => {

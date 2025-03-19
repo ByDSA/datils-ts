@@ -1,4 +1,4 @@
-import { throwErrorPopStack } from "../../../../danisales/mcenter/packages/shared/src/utils/errors";
+import { throwErrorPopStack } from "../../errors";
 
 export function isDefined<T>(value: T | null | undefined): value is T {
   return value !== undefined && value !== null;
