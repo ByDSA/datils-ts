@@ -27,3 +27,9 @@ export function between<C>(
     toBound: toBound,
   } );
 }
+
+export function fromAtDuration(at: number, duration: number, bounds?: Bounds): Interval<number> {
+  const to = at + +duration;
+
+  return between(at, to, bounds);
+}
