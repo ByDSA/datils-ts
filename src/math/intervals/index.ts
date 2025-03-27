@@ -1,5 +1,6 @@
 export {
   between as intervalBetween,
+  fromAtDuration as intervalFromAtDuration,
 } from "./building";
 
 export {
