@@ -1,9 +1,28 @@
-export * from "./building";
+export {
+  between as intervalBetween,
+} from "./building";
 
-export * from "./validation";
+export {
+  isInterval,
+  assertIsValidInterval,
+  isValidInterval,
+} from "./validation";
 
 export {
   type Interval,
 } from "./Interval";
 
-export * from "./modifiers";
+export {
+  Bound as IntervalBound,
+} from "./Bound";
+
+export {
+  contains as intervalContains,
+  intersects as intervalIntersects,
+  stringify as stringifyInterval,
+  shift as intervalShift,
+  union as intervalUnion,
+  withFrom as intervalWithFrom,
+  withTo as intervalWithTo,
+  normalize as intervalNormalize,
+} from "./modifiers";

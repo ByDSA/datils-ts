@@ -1,6 +1,6 @@
-export type Interval<C> = Readonly<{
+export type Interval<C> = {
     from: C;
-    fromInclusive?: boolean;
+    fromBound: boolean;
     to: C;
-    toInclusive?: boolean;
-}>;
+    toBound: boolean;
+};

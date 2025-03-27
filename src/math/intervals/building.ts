@@ -1,32 +1,29 @@
+import { Bound } from "./Bound";
 import { Interval } from "./Interval";
+import { normalize } from "./modifiers";
 
-type Inclusion = Partial<{
-  fromInclusive: boolean;
-  toInclusive: boolean;
+type Bounds = Partial<{
+  from: boolean;
+  to: boolean;
 }>;
 
-const DEFAULT_INCLUSON: Inclusion = {
-  fromInclusive: true,
-  toInclusive: false,
+export const DEFAULT_BOUNDS: Required<Bounds> = {
+  from: Bound.CLOSED,
+  to: Bound.OPEN,
 };
 
-export function of<C>(
+export function between<C>(
   from: C,
   to: C,
-  inclusion: Inclusion = DEFAULT_INCLUSON,
+  bounds?: Bounds,
 ): Interval<C> {
-  if (from > to) {
-    return {
-      from: to,
-      fromInclusive: inclusion.toInclusive,
-      to: from,
-      toInclusive: inclusion.fromInclusive,
-    };
-  }
+  const toBound = bounds?.to ?? DEFAULT_BOUNDS.to;
+  const fromBound = bounds?.from ?? DEFAULT_BOUNDS.from;
 
-  return {
+  return normalize( {
     from,
     to,
-    ...inclusion,
-  };
+    fromBound: fromBound,
+    toBound: toBound,
+  } );
 }
