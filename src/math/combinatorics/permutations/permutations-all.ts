@@ -37,7 +37,7 @@ export function countAllPermutations(n: number): bigint {
  * //          ['a','c'], ['c','a'], ['a','b','c'], ['a','c','b'], ['b','a','c'],
  * //          ['b','c','a'], ['c','a','b'], ['c','b','a']]
  */
-export function getAllPermutations<T>(array: T[]): T[][] {
+export function getAllPermutations<T>(array: readonly T[]): T[][] {
   const result: T[][] = [[]]; // Include empty array as a permutation
 
   for (let k = 1; k <= array.length; k++) {

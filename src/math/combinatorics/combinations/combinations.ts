@@ -1,7 +1,7 @@
 import { factorial } from "../factorial";
 import { countPermutations } from "../permutations/permutations";
 
-export function getCombinations<T>(arr: T[], k: number): T[][] {
+export function getCombinations<T>(arr: readonly T[], k: number): T[][] {
   if (k === 0)
     return [[]];
 
