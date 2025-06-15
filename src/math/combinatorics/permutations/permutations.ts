@@ -50,12 +50,12 @@ export function countPermutations(n: number, k: number): bigint {
  * - Space complexity: O(n!)
  * - The function preserves the original array and returns a new array with all permutations
  */
-export function getPermutations<T>(array: T[]): T[][] {
+export function getPermutations<T>(array: readonly T[]): T[][] {
   const result: T[][] = [];
 
   // Caso base: si el array tiene solo un elemento, la única permutación es el array mismo
   if (array.length === 1)
-    return [array];
+    return [[...array]];
 
   // Recursión
   for (let i = 0; i < array.length; i++) {

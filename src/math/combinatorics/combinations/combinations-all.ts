@@ -12,7 +12,7 @@
  * // Returns: [[], [1], [2], [3], [1,2], [1,3], [2,3], [1,2,3]]
  * ```
  */
-export function getAllCombinations<T>(array: T[]): T[][] {
+export function getAllCombinations<T>(array: readonly T[]): T[][] {
   const result: T[][] = [[]];
   const generate = (current: T[], index: number) => {
     if (current.length > 0)
